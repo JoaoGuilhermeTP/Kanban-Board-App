@@ -1,9 +1,11 @@
-import React from "react";
-import { Paper, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Paper, Typography, Button } from "@mui/material";
+import AddTaskModal from './AddTaskModal.js';
 import TaskCard from "./TaskCard.js";
 
-export default function Column({ title, tasks }) {
-    console.log(title, tasks)
+export default function Column({ title, tasks, id }) {
+  const [open, setOpen] = useState(false);
+  console.log(title, tasks);
   return (
     <Paper
       elevation={3}
@@ -15,6 +17,14 @@ export default function Column({ title, tasks }) {
       {tasks.map((task) => (
         <TaskCard key={task.id} title={task.title} />
       ))}
+      <Button fullWidth sx={{mt: 2}} onClick={() => setOpen(true)}>
+        + Add a task
+      </Button>
+      <AddTaskModal
+        open={open}
+        handleClose={() => setOpen(false)}
+        columnId={id}
+      />
     </Paper>
   );
 }
