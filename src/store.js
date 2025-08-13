@@ -51,6 +51,17 @@ const useStore = create((set) => ({
       return { columns: updatedColumns };
     });
   },
+  deleteTask: (columnId, taskId) => {
+    set((state) => ({
+      columns: {
+        ...state.columns,
+        [columnId]: {
+          ...state.columns[columnId],
+          tasks: state.columns[columnId].tasks.filter((task) => task.id !== taskId)
+        }
+      }
+    }));
+  },
 }));
 
 export default useStore;

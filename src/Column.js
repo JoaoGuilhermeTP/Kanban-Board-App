@@ -15,7 +15,7 @@ export default function Column({ title, tasks, id }) {
         {title}
       </Typography>
       {tasks.map((task) => (
-        <TaskCard key={task.id} title={task.title} />
+        <TaskCard key={task.id} id={task.id} title={task.title} columnId={id} />
       ))}
       <Button fullWidth sx={{mt: 2}} onClick={() => setOpen(true)}>
         + Add a task
