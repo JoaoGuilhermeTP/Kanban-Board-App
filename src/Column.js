@@ -2,7 +2,8 @@ import React from "react";
 import { Paper, Typography } from "@mui/material";
 import TaskCard from "./TaskCard.js";
 
-export default function Column({ title }) {
+export default function Column({ title, tasks }) {
+    console.log(title, tasks)
   return (
     <Paper
       elevation={3}
@@ -11,8 +12,9 @@ export default function Column({ title }) {
       <Typography variant="h6" gutterBottom>
         {title}
       </Typography>
-      <TaskCard />
-      <TaskCard />
+      {tasks.map((task) => (
+        <TaskCard key={task.id} title={task.title} />
+      ))}
     </Paper>
   );
 }

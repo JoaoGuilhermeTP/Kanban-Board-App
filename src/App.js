@@ -1,8 +1,11 @@
 import React from 'react';
 import { Container, Typography, Box } from '@mui/material'; // Removed Paper
 import Column from './Column.js';
+import useStore from './store.js';
 
 function App() {
+
+  const {columns} = useStore();
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Typography variant="h4" component="h1" gutterBottom>
@@ -15,10 +18,9 @@ function App() {
         overflowX: 'auto',
         padding: '16px 0'
       }}>
-        {/* The extra <p> tag is removed */}
-        <Column title="To Do" />
-        <Column title="In Progress" />
-        <Column title="Done" />
+        {Object.values(columns).map((column) => (
+          <Column key={column.id} title={column.title} tasks={column.tasks} />
+        ))}
       </Box>
     </Container>
   );
