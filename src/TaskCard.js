@@ -1,6 +1,7 @@
 import React from "react";
-import { Paper, Typography, IconButton, Container, Box } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { Paper, Typography, IconButton, Box } from "@mui/material";
+import DeleteOutlinedIcon from "@mui/icons-material/Delete";
+import { useParams, Link } from 'react-router-dom';
 import useStore from "./store.js";
 
 export default function TaskCard({ key, id, title, columnId }) {
@@ -10,18 +11,21 @@ export default function TaskCard({ key, id, title, columnId }) {
         <Paper elevation={1} sx={{ p: 2, mb: 2 }}>
             <Box
                 sx={{
-                  display: "flex",
-                    justifyContent: 'space-between',
-                    alignItems: 'center'
-                }}>
-                <Typography>{title}</Typography>
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                }}
+            >
+                <Link to={`task/${id}`}>
+                    <Typography>{title}</Typography>
+                </Link>
                 <IconButton
                     onClick={() => deleteTask(columnId, id)}
                     size="small"
                     aria-label="delete task"
-                    sx={{color: 'error.main'}}
+                    sx={{ color: "error.main" }}
                 >
-                    <DeleteIcon fontSize="small"  />
+                    <DeleteOutlinedIcon fontSize="small" />
                 </IconButton>
             </Box>
         </Paper>
